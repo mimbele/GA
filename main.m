@@ -14,12 +14,18 @@ function main
 
     
     for i=1:100
-        %[h,k]= newGeneration(A(:,:,i),B(:,i),i);
-        %A(1:20,:,i+1)=h(1:20,:);
-        %B(1:20,i+1)=k(1:20);
+        %we don't use this:
+        %[A(:,:,i+1),B(:,i+1)] = newGeneration(A(:,:,i),B(:,i),i);
+        %because new generation may be more than 20 size and we don't want
+        %that
+        [h,k]= newGeneration(A(:,:,i),B(:,i));
+        A(1:20,:,i+1)=h(1:20,:);
+        B(1:20,i+1)=k(1:20);
         
-        [A(1:20,:,i+1),B(1:20,i+1)] = newGeneration(A(:,:,i),B(:,i),i);
+        
         
     end
+    
+    %best of the last generation
     B(1,101)
 end
