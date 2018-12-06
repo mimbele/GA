@@ -1,4 +1,4 @@
-function [AA,BB]=newGeneration(A,B,g)
+function [AA,BB]=newGeneration(A,B)
     %generates new generation out of the old one(A)
     %A is a 20x4 array A(x1,x2,x3,x4,generation)
     %B is a 20 size array B(i) = (fn (A(i)s), generation)
