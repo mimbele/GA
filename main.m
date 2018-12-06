@@ -1,4 +1,5 @@
 function main
+    clc, clear;
     %generate 20 random gene
     A = zeros(20,4,1);
     B = zeros(20,1);
@@ -20,4 +21,5 @@ function main
         [A(1:20,:,i+1),B(1:20,i+1)] = newGeneration(A(:,:,i),B(:,i),i);
         
     end
+    B(1,101)
 end
