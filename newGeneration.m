@@ -23,9 +23,12 @@ function [AA,BB]=newGeneration(A,B,g)
     
     %cross over
     for i=1:2:19
-        i
         [AA(i,1:4),AA(i+1,1:4)]=Cross_over(AA(i,1:4),AA(i+1,1:4),0.25);
-        i=i+1;
+    end
+    
+    %mutation
+    for i=1:20
+        AA(i,1:4)=Mutation(AA(i,1:4),0.1,20);
     end
     
     
@@ -41,7 +44,9 @@ function [AA,BB]=newGeneration(A,B,g)
     BB(1)= maxB;
     AA(1,1:4) = A(maxi,1:4);
     
+    %calculate fitness of the genes new generation
     for i=2:20
         BB(i)= fn(A(i,1),A(i,2),A(i,3),A(i,4));
     end
+    
 end
