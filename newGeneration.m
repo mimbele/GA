@@ -1,4 +1,4 @@
-function [AA,BB]=newGeneration(A,B,maxb,minb)
+function [AA,BB]=newGeneration(A,B,maxb,minb,pp,p,c)
     %generates new generation out of the old one(A)
     %A is a 20x4 array A(x1,x2,x3,x4,generation)
     %B is a 20 size array B(i) = (fn (A(i)s), generation)
@@ -23,7 +23,7 @@ function [AA,BB]=newGeneration(A,B,maxb,minb)
     
     %cross over
     for i=1:2:19
-        [AA(i,1:4),AA(i+1,1:4)]=Cross_over(AA(i,1:4),AA(i+1,1:4),0.25);
+        [AA(i,1:4),AA(i+1,1:4)]=Cross_over(AA(i,1:4),AA(i+1,1:4),pp);
         for j=1:4 %check boundry
             if AA(i,j)>maxb
                 AA(i,j)=maxb;
@@ -40,7 +40,7 @@ function [AA,BB]=newGeneration(A,B,maxb,minb)
     
     %mutation
     for i=1:20
-        AA(i,1:4)=Mutation(AA(i,1:4),0.1,20);
+        AA(i,1:4)=Mutation(AA(i,1:4),p,c);
         for j=1:4 %check boundry
             if AA(i,j)>maxb
                 AA(i,j)=maxb;
@@ -53,7 +53,7 @@ function [AA,BB]=newGeneration(A,B,maxb,minb)
     
     %first gene in new generation is the best gene in the old generation
     maxB = 0;
-    maxi = 0;
+    maxi = 1;
     for i=1:20
         if B(i)>maxB
             maxB = B(i);
